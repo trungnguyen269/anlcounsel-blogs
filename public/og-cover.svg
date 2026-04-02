@@ -1,0 +1,8 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F5F5F0"/>
+  <rect x="40" y="40" width="1120" height="550" rx="36" fill="#FFFFFF"/>
+  <rect x="90" y="90" width="220" height="220" rx="36" fill="#2F3A45"/>
+  <path d="M200 146L254 172V220C254 258.8 231.2 293.2 200 312C168.8 293.2 146 258.8 146 220V172L200 146Z" fill="#DECBB7"/>
+  <text x="370" y="210" fill="#2F3A45" font-size="72" font-family="Georgia, serif">ANL Counsel</text>
+  <text x="370" y="295" fill="#5C6B7B" font-size="34" font-family="Arial, sans-serif">Legal content platform built for SEO, speed and scale.</text>
+</svg>

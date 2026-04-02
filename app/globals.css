@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-parchment font-body text-ink antialiased;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  @apply transition-colors duration-200;
+}
+
+::selection {
+  @apply bg-accent text-white;
+}
+
+.prose-legal {
+  @apply max-w-none space-y-4 text-[15px] leading-8 text-steel;
+}
+
+.prose-legal p {
+  @apply text-steel;
+}
+
+.prose-legal h2,
+.prose-legal h3 {
+  @apply font-display text-2xl text-ink;
+}
+
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+}
