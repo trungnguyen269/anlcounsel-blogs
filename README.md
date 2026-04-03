@@ -65,3 +65,4 @@ npm run dev
   - `/v1/search`
   - `/v1/contact`
 - Nếu backend Spring Boot của bạn dùng path khác, chỉ cần map lại trong service layer.
+- Xem hướng dẫn chi tiết tại `docs/API_INTEGRATION_GUIDE.md`.
