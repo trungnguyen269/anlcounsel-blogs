@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
 import { RichText } from "@/components/content/rich-text";
+import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/metadata";
+import { buildLegislationSchema } from "@/lib/structured-data";
 import { formatDate } from "@/lib/utils";
 import { getLegalDocumentById, getLegalDocumentIds } from "@/services/api/content";
 
@@ -31,7 +33,10 @@ export async function generateMetadata({ params }: PageProps) {
   return buildMetadata({
     title: `${document.referenceNumber} | ${document.title}`,
     description: document.summary,
-    path: `/van-ban/${document.id}`
+    path: `/van-ban/${document.id}`,
+    publishedTime: document.issuedAt,
+    section: document.category,
+    tags: [document.referenceNumber, document.category]
   });
 }
 
@@ -44,6 +49,7 @@ export default async function LegalDocumentDetailPage({ params }: PageProps) {
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+      <JsonLd data={buildLegislationSchema(document)} />
       <Breadcrumbs
         items={[
           { href: "/", label: "Trang chủ" },

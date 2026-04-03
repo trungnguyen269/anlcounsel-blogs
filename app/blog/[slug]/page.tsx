@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
 import { RichText } from "@/components/content/rich-text";
+import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/metadata";
+import { buildBlogPostingSchema } from "@/lib/structured-data";
 import { formatDate } from "@/lib/utils";
 import { getBlogPostBySlug, getBlogSlugs } from "@/services/api/content";
 
@@ -32,7 +34,13 @@ export async function generateMetadata({ params }: PageProps) {
     title: post.seoTitle ?? `${post.title} | ANL Counsel`,
     description: post.seoDescription ?? post.excerpt,
     path: `/blog/${post.slug}`,
-    type: "article"
+    image: post.coverImage,
+    type: "article",
+    authors: [post.author],
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt ?? post.publishedAt,
+    section: post.category,
+    tags: [post.category]
   });
 }
 
@@ -45,6 +53,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+      <JsonLd data={buildBlogPostingSchema(post)} />
       <Breadcrumbs
         items={[
           { href: "/", label: "Trang chủ" },

@@ -26,7 +26,8 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
     title: query ? `Tìm kiếm "${query}" | ANL Counsel` : "Tìm kiếm | ANL Counsel",
     description:
       "Trang SSR cho tìm kiếm và lọc động, dùng cache no-store để luôn phản ánh truy vấn hiện tại.",
-    path: "/tim-kiem"
+    path: "/tim-kiem",
+    noIndex: true
   });
 }
 

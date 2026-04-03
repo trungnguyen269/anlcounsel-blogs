@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/content/breadcrumbs";
 import { RichText } from "@/components/content/rich-text";
+import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/metadata";
+import { buildLegalCaseSchema } from "@/lib/structured-data";
 import { formatDate } from "@/lib/utils";
 import { getPrecedentById, getPrecedentIds } from "@/services/api/content";
 
@@ -31,7 +33,10 @@ export async function generateMetadata({ params }: PageProps) {
   return buildMetadata({
     title: `${precedent.title} | ANL Counsel`,
     description: precedent.summary,
-    path: `/an-le/${precedent.id}`
+    path: `/an-le/${precedent.id}`,
+    publishedTime: precedent.decisionDate,
+    section: precedent.category,
+    tags: [precedent.category, ...precedent.keywordTags]
   });
 }
 
@@ -44,6 +49,7 @@ export default async function PrecedentDetailPage({ params }: PageProps) {
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+      <JsonLd data={buildLegalCaseSchema(precedent)} />
       <Breadcrumbs
         items={[
           { href: "/", label: "Trang chủ" },

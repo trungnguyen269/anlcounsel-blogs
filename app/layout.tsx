@@ -3,8 +3,10 @@ import { Cormorant_Garamond, Open_Sans } from "next/font/google";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { JsonLd } from "@/components/seo/json-ld";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { buildMetadata } from "@/lib/metadata";
+import { buildOrganizationSchema, buildWebsiteSchema } from "@/lib/structured-data";
 
 import "./globals.css";
 
@@ -35,6 +37,7 @@ export default function RootLayout({
   return (
     <html className={`${cormorant.variable} ${openSans.variable}`} lang="vi">
       <body>
+        <JsonLd data={[buildOrganizationSchema(), buildWebsiteSchema()]} />
         <div className="min-h-screen bg-parchment">
           <SiteHeader />
           <main>{children}</main>

@@ -6,11 +6,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: ["/tim-kiem"]
+      allow: "/"
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL
   };
 }
-
